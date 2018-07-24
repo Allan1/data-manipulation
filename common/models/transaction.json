@@ -1,0 +1,38 @@
+{
+    "name": "Transaction",
+    "plural": "transactions",
+    "base": "Model",
+    "idInjection": true,
+    "options": {
+      "validateUpsert": true
+    },
+    "properties": {
+      "timestamp": {
+        "type": "date"
+      },
+      "revenue": {
+        "type": "number"
+      },
+      "transaction_id": {
+        "type": "string"
+      },
+      "store_name": {
+        "type": "string"
+      }
+    },
+    "validations": [],
+    "relations": {
+      "transactionProducts": {
+        "type": "embedsMany",
+        "model": "Product",
+        "property": "products",
+        "options": {
+          "validate": false,
+          "forceId": false
+        }
+      }
+    },
+    "acls": [],
+    "methods": {}
+  }
+  

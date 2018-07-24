@@ -1,0 +1,22 @@
+{
+    "name": "Product",
+    "plural": "products",
+    "base": "Model",
+    "idInjection": true,
+    "options": {
+      "validateUpsert": true
+    },
+    "properties": {
+      "name": {
+        "type": "string"
+      },
+      "price": {
+        "type": "number"
+      }
+    },
+    "validations": [],
+    "relations": {},
+    "acls": [],
+    "methods": {}
+  }
+  

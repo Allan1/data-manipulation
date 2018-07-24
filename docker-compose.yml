@@ -1,0 +1,11 @@
+version: '2'
+
+services:
+  app:
+    build: .
+    image: manipulation_api
+    ports:
+      - "3000:3000"
+    container_name: manipulation_api_container
+    command: forever server/server.js
+ 
