@@ -8,6 +8,7 @@
 
 - Configure host, port and restApiRoot on server/config.json
 - Start with: docker-compose up -d
+- Stop with: docker-compose down
 - Default api endpoint: http://localhost:3000/api/
 
 ### Routes
