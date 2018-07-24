@@ -30,14 +30,14 @@ module.exports = function(Transaction) {
 
           switch (event.event) {
             case 'comprou':
-              let transaction = Transaction.parseTransactionFromEvent(event);
+              let transaction = Transaction.parseFromEvent(event);
               transactions.splice(_sortedIndexBy(transactions, transaction, function(item) {
                 return -item.timestamp;
               }), 0, transaction);
               break;
 
             case 'comprou-produto':
-              let product = Transaction.parseProductFromEvent(event);
+              let product = Transaction.app.models.Product.parseFromEvent(event);
               let i;
               for (i = 0; i < productsByTransition.length && transactionId <= productsByTransition[i].transaction_id; i++) {
                 if (productsByTransition[i].transaction_id === transactionId) {
@@ -83,17 +83,7 @@ module.exports = function(Transaction) {
     }
   );
 
-  Transaction.parseProductFromEvent = function(event) {
-    let product = Transaction.app.models.Product();
-    for (let j = 0; j < event.custom_data.length; j++) {
-      if (event.custom_data[j].key.startsWith('product_')) {
-        product[event.custom_data[j].key.replace('product_', '')] = event.custom_data[j].value;
-      }
-    }
-    return product;
-  };
-
-  Transaction.parseTransactionFromEvent = function(event) {
+  Transaction.parseFromEvent = function(event) {
     let transaction = Transaction({
       timestamp: event.timestamp,
       revenue: event.revenue,
